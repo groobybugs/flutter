@@ -156,16 +156,6 @@ projectsEvaluated {
                     return
                 }
 
-                // if the the publication already exists on the project, skip creating the publication creation task
-                if(project.publishing.publications.findByName(variantName) != null) {
-                    finalizedBy "publish"
-                    return
-                }
-
-                if (matchingComponent == null) {
-                    return
-                }
-
                 // Create a default MavenPublication for the variant (except "all" since that is used to publish artifacts in the new way)
                 project.publishing.publications.create(variantName, MavenPublication) { pub ->
                     groupId = "${pub.groupId}"
